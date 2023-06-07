@@ -1,11 +1,10 @@
 import json
 import os
 
-import dataset_tools as dtools
-import supervisely as sly
 from dotenv import load_dotenv
 
-from src.convert import convert_and_upload_supervisely_project
+import dataset_tools as dtools
+import supervisely as sly
 
 # !    Checklist before running the app:
 # * 1. Set project name and project name full.
@@ -17,8 +16,8 @@ from src.convert import convert_and_upload_supervisely_project
 # ? 6. Push to GitHub.
 
 # * Names of the project that will appear on instance and on Ninja webpage.
-PROJECT_NAME = "basic name (short)"  # ! Fill the name of the project
-PROJECT_NAME_FULL = "full name (long)"  # ! Fill the full name of the project
+PROJECT_NAME = "cwfid"  # ! Fill the name of the project
+PROJECT_NAME_FULL = "A Crop/Weed Field Image Dataset"  # ! Fill the full name of the project
 
 # * Create instance of supervisely API object.
 load_dotenv(os.path.expanduser("~/ninja.env"))
@@ -39,7 +38,7 @@ os.makedirs("./visualizations/", exist_ok=True)
 project_info = api.project.get_info_by_name(workspace_id, PROJECT_NAME)
 if not project_info:
     # * If project doesn't found on instance, create it and use new project info.
-    project_info = convert_and_upload_supervisely_project(api, workspace_id, PROJECT_NAME)
+    # project_info = convert_and_upload_supervisely_project(api, workspace_id, PROJECT_NAME)
     sly.logger.info(f"Project {PROJECT_NAME} not found on instance. Created new project.")
 else:
     sly.logger.info(f"Found project {PROJECT_NAME} on instance, will use it.")
@@ -83,23 +82,27 @@ custom_data = {
     #####################
     "name": PROJECT_NAME,  # * Should be filled in the beginning of file
     "fullname": PROJECT_NAME_FULL,  # * Should be filled in the beginning of file
-    "cv_tasks": ["semantic segmentation", "instance segmentation"],  # ! FILL IT!
-    "annotation_types": ["semantic segmentation", "instance segmentation"],  # ! FILL IT!
-    "industries": ["general domain"],  # ! FILL IT!
-    "release_year": 2018,  # ! FILL IT!
-    "homepage_url": "https://www.kaggle.com/datasets/kumaresanmanickavelu/lyft-udacity-challenge",  # ! FILL IT!
-    "license": "CC0: Public Domain",  # ! FILL IT!
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",  # ! FILL IT!
-    "preview_image_id": 224318,  # ! This should be filled AFTER uploading images to instance, just ID of any image
-    "github_url": "https://github.com/dataset-ninja/synthetic-plants",  # ! input url to GitHub repo in dataset-ninja
-    "github": "dataset-ninja/synthetic-plants",  # ! input GitHub repo in dataset-ninja (short way)
+    "cv_tasks": [
+        "semantic segmentation",
+        "object detection",
+        "instance segmentation",
+    ],  # ! FILL IT!
+    "annotation_types": ["instance segmentation"],  # ! FILL IT!
+    "industries": ["agriculture"],  # ! FILL IT!
+    "release_year": 2015,  # ! FILL IT!
+    "homepage_url": "https://github.com/cwfid/dataset",  # ! FILL IT!
+    "license": "non-commercial research",  # ! FILL IT!
+    "license_url": "https://github.com/cwfid/dataset#use",  # ! FILL IT!
+    "preview_image_id": 295363,  # ! This should be filled AFTER uploading images to instance, just ID of any image
+    "github_url": "https://github.com/dataset-ninja/cwfid",  # ! input url to GitHub repo in dataset-ninja
+    "github": "dataset-ninja/cwfid",  # ! input GitHub repo in dataset-ninja (short way)
     "download_sly_url": download_sly_url,
     #####################
     # ? optional fields #
     #####################
-    # "download_original_url": Union[None, str],
-    # "paper": Union[None, str],
-    # "citation_url": None,  # ! FILL IT!
+    "download_original_url": "https://github.com/cwfid/dataset/releases",
+    "paper": r"http://rd.springer.com/chapter/10.1007%2F978-3-319-16220-1_8",
+    "citation_url": "https://github.com/cwfid/dataset#paper",  # ! FILL IT!
     # "organization_name": Union[None, str, list],
     # "organization_url": Union[None, str, list],
     # "tags": [],
