@@ -1,3 +1,3 @@
-# Synthetic RGB-D data for plant segmentation
+# cwfid: A Crop/Weed Field Image Dataset
 
-Synthetic RGB-D data for plant segmentation: Semantic and instance segmentation
+cwfid: A Crop/Weed Field Image Dataset
