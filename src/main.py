@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 import dataset_tools as dtools
 import supervisely as sly
 
+# from src.convert import convert_and_upload_supervisely_project
+
 # !    Checklist before running the app:
 # * 1. Set project name and project name full.
 # * 2. Prepare convert_and_upload_supervisely_project() function in convert.py
@@ -16,8 +18,9 @@ import supervisely as sly
 # ? 6. Push to GitHub.
 
 # * Names of the project that will appear on instance and on Ninja webpage.
-PROJECT_NAME = "cwfid"  # ! Fill the name of the project
-PROJECT_NAME_FULL = "A Crop/Weed Field Image Dataset"  # ! Fill the full name of the project
+PROJECT_NAME = "CWFID"  # str
+PROJECT_NAME_FULL = "A Crop/Weed Field Image Dataset"  # str
+DOWNLOAD_ORIGINAL_URL = "https://github.com/cwfid/dataset/releases"  # Union[None, str]
 
 # * Create instance of supervisely API object.
 load_dotenv(os.path.expanduser("~/ninja.env"))
@@ -70,9 +73,18 @@ if from_instance:
 
 # * Step 2: Get download link
 download_sly_url = dtools.prepare_download_link(project_info)
-dtools.update_sly_url_dict({project_id: download_sly_url})
+dtools.update_sly_url_dict(
+    {
+        PROJECT_NAME: {
+            "id": project_id,
+            "download_sly_url": download_sly_url,
+            "download_original_url": DOWNLOAD_ORIGINAL_URL,
+        }
+    }
+)
 sly.logger.info(f"Prepared download link: {download_sly_url}")
 
+api.project.update_settings
 
 # * Step 3: Update project custom data
 sly.logger.info("Updating project custom data...")
@@ -86,13 +98,13 @@ custom_data = {
         "semantic segmentation",
         "object detection",
         "instance segmentation",
-    ],  # ! FILL IT!
-    "annotation_types": ["instance segmentation"],  # ! FILL IT!
-    "industries": ["agriculture"],  # ! FILL IT!
-    "release_year": 2015,  # ! FILL IT!
-    "homepage_url": "https://github.com/cwfid/dataset",  # ! FILL IT!
-    "license": "non-commercial research",  # ! FILL IT!
-    "license_url": "https://github.com/cwfid/dataset#use",  # ! FILL IT!
+    ],
+    "annotation_types": ["instance segmentation"],
+    "industries": ["agriculture"],
+    "release_year": 2015,
+    "homepage_url": "https://github.com/cwfid/dataset",
+    "license": "non-commercial research",
+    "license_url": "https://github.com/cwfid/dataset#use",
     "preview_image_id": 295363,  # ! This should be filled AFTER uploading images to instance, just ID of any image
     "github_url": "https://github.com/dataset-ninja/cwfid",  # ! input url to GitHub repo in dataset-ninja
     "github": "dataset-ninja/cwfid",  # ! input GitHub repo in dataset-ninja (short way)
@@ -100,9 +112,9 @@ custom_data = {
     #####################
     # ? optional fields #
     #####################
-    "download_original_url": "https://github.com/cwfid/dataset/releases",
+    "download_original_url": DOWNLOAD_ORIGINAL_URL,
     "paper": r"http://rd.springer.com/chapter/10.1007%2F978-3-319-16220-1_8",
-    "citation_url": "https://github.com/cwfid/dataset#paper",  # ! FILL IT!
+    "citation_url": "https://github.com/cwfid/dataset#paper",
     # "organization_name": Union[None, str, list],
     # "organization_url": Union[None, str, list],
     # "tags": [],
