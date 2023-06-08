@@ -20,7 +20,7 @@ import supervisely as sly
 # * Names of the project that will appear on instance and on Ninja webpage.
 PROJECT_NAME = "CWFID"  # str
 PROJECT_NAME_FULL = "A Crop/Weed Field Image Dataset"  # str
-DOWNLOAD_ORIGINAL_URL = "https://github.com/cwfid/dataset/releases"  # Union[None, str]
+DOWNLOAD_ORIGINAL_URL = "https://github.com/cwfid/dataset/releases"  # Union[None, str, dict]
 CLASS2COLOR = None  # or set manually with {"class" : [R,G,B] } pattern
 
 # * Create instance of supervisely API object.
@@ -248,6 +248,39 @@ def build_summary():
     sly.logger.info("Successfully built and saved summary.")
 
 
+def build_download():
+    sly.logger.info("Starting to build 'DOWNLOAD.md'...")
+
+    DOWNLOAD_SLY_TEMPLATE = "Dataset {project_name} can be downloaded in Supervisely format:\n\n[Download]({download_sly_url})\n\n"
+
+    DOWNLOAD_SLY_TEMPLATE += "or download with the following python code:\n``` bash\npip install --upgrade dataset-tools\n```"
+
+    DOWNLOAD_SLY_TEMPLATE += "\n\n``` python\nimport dataset_tools as dtools\n\ndtools.download(dataset={project_name}, dst_dir='~/datasets/{project_name}'')```"
+
+    download_content = ""
+
+    licensecheck = True
+    if download_sly_url is not None and licensecheck:
+        download_content += DOWNLOAD_SLY_TEMPLATE.format(
+            project_name=PROJECT_NAME,
+            download_sly_url=download_sly_url,
+        )
+
+    if DOWNLOAD_ORIGINAL_URL is not None and isinstance(DOWNLOAD_ORIGINAL_URL, str):
+        download_content += (
+            f"The data in original format can be [downloaded here]({DOWNLOAD_ORIGINAL_URL})"
+        )
+    elif DOWNLOAD_ORIGINAL_URL is not None and isinstance(DOWNLOAD_ORIGINAL_URL, dict):
+        download_content += f"The data in original format can be downloaded here:\n\n"
+        for key, val in DOWNLOAD_ORIGINAL_URL:
+            download_content += f"- 🔗[{key}]({val})\n"
+
+    with open("DOWNLOAD.md", "w") as download_file:
+        download_file.write(download_content)
+
+    sly.logger.info("Successfully built and saved 'DOWNLOAD.md'.")
+
+
 def main():
     pass
 
@@ -256,6 +289,7 @@ def main():
     build_stats()
     build_visualizations()
     build_summary()
+    build_download()
 
     sly.logger.info("Script finished successfully.")
 
