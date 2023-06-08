@@ -20,7 +20,11 @@ import supervisely as sly
 # * Names of the project that will appear on instance and on Ninja webpage.
 PROJECT_NAME = "CWFID"  # str
 PROJECT_NAME_FULL = "A Crop/Weed Field Image Dataset"  # str
-DOWNLOAD_ORIGINAL_URL = "https://github.com/cwfid/dataset/releases"  # Union[None, str, dict]
+# DOWNLOAD_ORIGINAL_URL = "https://github.com/cwfid/dataset/releases"  # Union[None, str, dict]
+DOWNLOAD_ORIGINAL_URL = {
+    "link1": "https://github.com/cwfid/dataset/releases",
+    "link2": "https://github.com/cwfid/dataset/releases",
+}
 CLASS2COLOR = None  # or set manually with {"class" : [R,G,B] } pattern
 
 # * Create instance of supervisely API object.
@@ -140,7 +144,7 @@ def build_stats():
     sly.logger.info("Starting to build stats...")
 
     stats = [
-        dtools.ClassBalance(project_meta),
+        dtools.ClassBalance(project_meta, force=True),
         dtools.ClassCooccurrence(project_meta, force=False),
         dtools.ClassesPerImage(project_meta, datasets),
         dtools.ObjectsDistribution(project_meta),
@@ -251,11 +255,11 @@ def build_summary():
 def build_download():
     sly.logger.info("Starting to build 'DOWNLOAD.md'...")
 
-    DOWNLOAD_SLY_TEMPLATE = "Dataset {project_name} can be downloaded in Supervisely format:\n\n[Download]({download_sly_url})\n\n"
+    DOWNLOAD_SLY_TEMPLATE = "Dataset **{project_name}** can be downloaded in Supervisely format:\n\n 🔗[Download]({download_sly_url})\n\n"
 
-    DOWNLOAD_SLY_TEMPLATE += "or download with the following python code:\n``` bash\npip install --upgrade dataset-tools\n```"
+    DOWNLOAD_SLY_TEMPLATE += "As an alternative, it can be downloaded with dataset-tools package:\n``` bash\npip install --upgrade dataset-tools\n```"
 
-    DOWNLOAD_SLY_TEMPLATE += "\n\n``` python\nimport dataset_tools as dtools\n\ndtools.download(dataset={project_name}, dst_dir='~/datasets/{project_name}'')```"
+    DOWNLOAD_SLY_TEMPLATE += "\n\n... using following python code:\n``` python\nimport dataset_tools as dtools\n\ndtools.download(dataset={project_name}, dst_dir='~/dtools/datasets/{project_name}')\n```\n"
 
     download_content = ""
 
@@ -268,11 +272,11 @@ def build_download():
 
     if DOWNLOAD_ORIGINAL_URL is not None and isinstance(DOWNLOAD_ORIGINAL_URL, str):
         download_content += (
-            f"The data in original format can be [downloaded here]({DOWNLOAD_ORIGINAL_URL})"
+            f"The data in original format can be 🔗 [downloaded here]({DOWNLOAD_ORIGINAL_URL})"
         )
     elif DOWNLOAD_ORIGINAL_URL is not None and isinstance(DOWNLOAD_ORIGINAL_URL, dict):
         download_content += f"The data in original format can be downloaded here:\n\n"
-        for key, val in DOWNLOAD_ORIGINAL_URL:
+        for key, val in DOWNLOAD_ORIGINAL_URL.items():
             download_content += f"- 🔗[{key}]({val})\n"
 
     with open("DOWNLOAD.md", "w") as download_file:
