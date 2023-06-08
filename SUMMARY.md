@@ -6,8 +6,4 @@ Each image in the CWFID dataset has pixel-level instance segmentation annotation
 
 Here are the visualized examples for each of the 2 classes:
 
-
-
-Here are the visualized examples for each of the 2 classes:
-
 [Dataset classes](https://github.com/dataset-ninja/cwfid/raw/main/visualizations/classes_preview.webm)
