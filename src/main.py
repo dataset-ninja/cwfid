@@ -21,25 +21,26 @@ import supervisely as sly
 PROJECT_NAME = "CWFID"  # str
 PROJECT_NAME_FULL = "A Crop/Weed Field Image Dataset"  # str
 DOWNLOAD_ORIGINAL_URL = "https://github.com/cwfid/dataset/releases"  # Union[None, str]
-CLASS2COLOR = {"crop": "red", "weed": "lime"}  # or set manually with {"class":"color"} pattern.
-# Choose color from hex, rgb, or one of following presets:
-clr_presets = {
-    "red": "#D0021B",
-    "orange": "#F5A623",
-    "yellow": "#F8E71C",
-    "brown": "#8B572A",
-    "lime": "#7ED321",
-    "green": "#417505",
-    "magenta": "#BD10E0",
-    "purple": "#9013FE",
-    "blue": "#4A90E2",
-    "aqua": "#50E3C2",
-    "palelime": "#B8E986",
-    "black": "#000000",
-    "darkgray": "#4A4A4A",
-    "gray": "#9B9B9B",
-    "white": "#FFFFFF",
-}
+CLASS2COLOR = None  # or set manually with {"class" : [r,g,b] } pattern.
+
+# # Choose color from hex, rgb, or one of following presets:
+# clr_presets = {
+#     "red": "#D0021B",
+#     "orange": "#F5A623",
+#     "yellow": "#F8E71C",
+#     "brown": "#8B572A",
+#     "lime": "#7ED321",
+#     "green": "#417505",
+#     "magenta": "#BD10E0",
+#     "purple": "#9013FE",
+#     "blue": "#4A90E2",
+#     "aqua": "#50E3C2",
+#     "palelime": "#B8E986",
+#     "black": "#000000",
+#     "darkgray": "#4A4A4A",
+#     "gray": "#9B9B9B",
+#     "white": "#FFFFFF",
+# }
 
 # * Create instance of supervisely API object.
 load_dotenv(os.path.expanduser("~/ninja.env"))
@@ -73,23 +74,30 @@ from_instance = True  # ToDo: Automatically detect if app is running from instan
 # * Step 1: Read project and project meta
 # ? Option 1: From supervisely instance
 
+
 if from_instance:
     sly.logger.info("The app in the instance mode. Will download data from Supervisely.")
 
     project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
-
     if CLASS2COLOR is not None:
-        meta_json = project_meta.to_json()
-        for class_info in meta_json["classes"]:
-            class_title = class_info["title"]
-            if class_title in CLASS2COLOR:
-                new_color = CLASS2COLOR[class_title]
-                class_info["color"] = clr_presets.get(new_color, new_color)
-        api.project.update_meta(project_id, meta_json)
-        project_meta = sly.ProjectMeta.from_json(meta_json)
+        items = []
+        for obj_class in project_meta.obj_classes.items():
+            if obj_class.name in CLASS2COLOR:
+                items.append(
+                    sly.ObjClass(
+                        obj_class.name,
+                        obj_class.geometry_type,
+                        CLASS2COLOR[obj_class.name],
+                        obj_class.geometry_config,
+                        obj_class.sly_id,
+                        obj_class.hotkey,
+                    )
+                )
+        obj_class_collection = sly.ObjClassCollection(items)
+        project_meta = sly.ProjectMeta(obj_classes=obj_class_collection)
+        api.project.update_meta(project_id, project_meta)
 
     datasets = api.dataset.get_list(project_id)
-
     sly.logger.info(
         f"Prepared project meta and read {len(datasets)} datasets for project with id={project_id}."
     )
