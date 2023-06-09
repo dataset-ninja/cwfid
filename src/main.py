@@ -92,7 +92,7 @@ if from_instance:
 # datasets = None
 
 # * Step 2: Get download link
-download_sly_url = dtools.prepare_download_link(project_info)
+download_sly_url = dtools.prepare_link(api, project_info)
 dtools.update_sly_url_dict(
     {
         PROJECT_NAME: {
@@ -100,7 +100,7 @@ dtools.update_sly_url_dict(
             "download_sly_url": download_sly_url,
             "download_original_url": DOWNLOAD_ORIGINAL_URL,
         }
-    }
+    },
 )
 sly.logger.info(f"Prepared download link: {download_sly_url}")
 
