@@ -104,7 +104,7 @@ dtools.update_sly_url_dict(
 )
 sly.logger.info(f"Prepared download link: {download_sly_url}")
 
-dtools.download(PROJECT_NAME, f"./APP_DATA/{PROJECT_NAME}")
+# dtools.download(PROJECT_NAME, f"./APP_DATA/{PROJECT_NAME}.tar")
 # * Step 3: Update project custom data
 sly.logger.info("Updating project custom data...")
 custom_data = {
@@ -269,7 +269,7 @@ def build_download():
 
     DOWNLOAD_SLY_TEMPLATE += "As an alternative, it can be downloaded with dataset-tools package:\n``` bash\npip install --upgrade dataset-tools\n```"
 
-    DOWNLOAD_SLY_TEMPLATE += "\n\n... using following python code:\n``` python\nimport dataset_tools as dtools\n\ndtools.download(dataset='{project_name}', dst_dir='~/dtools/datasets/{project_name}')\n```\n"
+    DOWNLOAD_SLY_TEMPLATE += "\n\n... using following python code:\n``` python\nimport dataset_tools as dtools\n\ndtools.download(dataset='{project_name}', dst_dir='~/dtools/datasets/{project_name}.tar')\n```\n"
 
     download_content = ""
 
@@ -295,7 +295,7 @@ def build_download():
         download_content += (
             "\n\n... using following python code:\n``` python\nimport dataset_tools as dtools\n\n"
         )
-        download_content += f"dtools.download(dataset='{PROJECT_NAME}', dst_dir='~/dtools/datasets/{PROJECT_NAME}')\n```\n"
+        download_content += f"dtools.download(dataset='{PROJECT_NAME}', dst_dir='~/dtools/datasets/{PROJECT_NAME}.tar')\n```\n"
 
     with open("DOWNLOAD.md", "w") as download_file:
         download_file.write(download_content)
