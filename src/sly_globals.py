@@ -1,9 +1,10 @@
-
-import os, sys
+import os
+import sys
 from pathlib import Path
-import supervisely as sly
-from supervisely.app.v1.app_service import AppService
 
+import supervisely as sly
+
+# from supervisely.app.v1.app_service import AppService
 
 # my_app: AppService = AppService()
 # api: sly.Api = my_app.public_api
@@ -18,23 +19,23 @@ sys.path.append(root_source_dir)
 
 logger = sly.logger
 
-project_name = 'cwfid'
-dataset_name = 'ds'
-work_dir = 'cwfid'
-cwfid_url = 'https://codeload.github.com/cwfid/dataset/zip/refs/tags/v1.0'
+project_name = "CWFID"
+dataset_name = "ds"
+work_dir = "cwfid"
+cwfid_url = "https://codeload.github.com/cwfid/dataset/zip/refs/tags/v1.0"
 
-arch_name = 'dataset-1.0.zip'
-folder_name = 'dataset-1.0'
-images_folder_name = 'images'
-annotation_folder_name = 'annotations'
+arch_name = "dataset-1.0.zip"
+folder_name = "dataset-1.0"
+images_folder_name = "images"
+annotation_folder_name = "annotations"
 
-ann_suffix = '_annotation.yaml'
-mask_suffix = '_annotation.png'
+ann_suffix = "_annotation.yaml"
+mask_suffix = "_annotation.png"
 
-name_to_index = {'weed': 77, 'crop': 150}
+name_to_index = {"weed": 77, "crop": 150}
 
-class_name_plant = 'weed'
-class_name_crop = 'crop'
+class_name_plant = "weed"
+class_name_crop = "crop"
 
 batch_size = 30
 
