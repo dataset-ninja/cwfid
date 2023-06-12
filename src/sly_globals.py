@@ -45,7 +45,8 @@ obj_class_collection = sly.ObjClassCollection([obj_class_plant, obj_class_crop])
 
 meta = sly.ProjectMeta(obj_classes=obj_class_collection)
 
-storage_dir = sly.app.get_data_dir()
+# storage_dir = sly.app.get_data_dir()
+storage_dir = "./APP_DATA"
 work_dir_path = os.path.join(storage_dir, work_dir)
 sly.io.fs.mkdir(work_dir_path)
 archive_path = os.path.join(work_dir_path, arch_name)

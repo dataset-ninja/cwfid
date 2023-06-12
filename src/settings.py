@@ -11,7 +11,7 @@ PROJECT_NAME_FULL: str = "A Crop/Weed Field Image Dataset"
 ##################################
 # * After uploading to instance ##
 ##################################
-LICENSE: License = License.Custom()
+LICENSE: License = License.Custom(url="https://github.com/cwfid/dataset#use")
 INDUSTRIES: List[Industry] = [Industry.Agriculture()]
 CV_TASKS: List[CVTask] = [
     CVTask.SemanticSegmentation(),
