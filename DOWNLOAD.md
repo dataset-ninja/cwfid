@@ -1,6 +1,6 @@
 Dataset **CWFID** can be downloaded in Supervisely format:
 
- [Download](https://assets.supervise.ly/supervisely-supervisely-assets-public/teams_storage/N/M/hu/jnnPR4So6FMAxBE27XEu8UcGpq0k1f29lQlznwNzLgnWoCgKTPSrtW5rqNMhUC9ytyZwHjB2Q4GwOVDanhB2LGG6ZDuokTxAx7rmxf2f3uJlctCJ62kq7ThB0Ztb.tar)
+ [Download](https://assets.supervise.ly/supervisely-supervisely-assets-public/teams_storage/q/V/tD/DkjDBIGvZwkFWBECl9HeLGb6CZBatBrf5Vb3dUwN6cx815WdUDJr0j4Sq5CNTWl43fxyBWInzMFxdrhy4Z3kML71TKjwqzl6xec6MfRmKTJpriMuOWDZ891my5bd.tar)
 
 As an alternative, it can be downloaded with dataset-tools package:
 ``` bash
