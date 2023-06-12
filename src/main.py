@@ -3,11 +3,11 @@ import json
 import os
 import sys
 
-import supervisely as sly
-from dataset_tools import ProjectRepo
 from dotenv import load_dotenv
 
 import src.settings as s
+import supervisely as sly
+from dataset_tools import ProjectRepo
 from src.convert import convert_and_upload_supervisely_project
 
 PARENT_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -65,6 +65,6 @@ if __name__ == "__main__":
     project_repo = ProjectRepo(api, project_id, settings)
     project_repo.build_stats(force=force_stats)
     project_repo.build_visualizations(force=force_visuals)
-    project_repo.build_texts(force=force_texts)
+    project_repo.build_texts(force=force_texts, preview_class="SideAnnotationsGrid")
 
     sly.logger.info("Script finished.")
