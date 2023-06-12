@@ -11,6 +11,6 @@ pip install --upgrade dataset-tools
 ``` python
 import dataset_tools as dtools
 
-dtools.download(dataset='CWFID', dst_dir='~/dtools/datasets/CWFID')
+dtools.download(dataset='CWFID', dst_path='~/dtools/datasets/CWFID.tar')
 ```
 The data in original format can be :link: [downloaded here](https://github.com/cwfid/dataset/archive/refs/tags/v1.0.zip)
