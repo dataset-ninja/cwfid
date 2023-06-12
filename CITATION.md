@@ -1,15 +1,11 @@
-If you make use of the cwfid data, please cite the following reference:
+If you make use of the A Crop/Weed Field Image Dataset data, please cite the following reference (to be prepared after the challenge workshop) in any publications:
 
-``` bibtex
-@inproceedings{haug15,
-  author={Haug, Sebastian and Ostermann, J{\"o}rn},
-  title={A Crop/Weed Field Image Dataset for the Evaluation of Computer Vision Based Precision Agriculture Tasks},
-  year={2015},
-  booktitle={Computer Vision - ECCV 2014 Workshops},
-  doi={10.1007/978-3-319-16220-1_8},
-  url={http://dx.doi.org/10.1007/978-3-319-16220-1_8},
-  pages={105--116},
+```
+@misc{CWFID,
+	author = "TO BE FILLED MANUALLY!",
+	title = "A Crop/Weed Field Image Dataset",
+	howpublished = "https://github.com/cwfid/dataset"
 }
 ```
 
-[🔗 Source](https://github.com/cwfid/dataset#paper).
+[🔗 Source](https://github.com/cwfid/dataset)

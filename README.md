@@ -1,3 +1,3 @@
-# cwfid: A Crop/Weed Field Image Dataset
+# A Crop/Weed Field Image Dataset
 
-cwfid: A Crop/Weed Field Image Dataset
+CWFID is a dataset for semantic segmentation, object detection, instance segmentation tasks.
