@@ -6,7 +6,7 @@ from dataset_tools.templates import AnnotationType, CVTask, Industry, License
 # * Before uploading to instance #
 ##################################
 PROJECT_NAME: str = "CWFID"
-PROJECT_NAME_FULL: str = "A Crop/Weed Field Image Dataset"
+PROJECT_NAME_FULL: str = "CWFID: A Crop/Weed Field Image Dataset"
 
 ##################################
 # * After uploading to instance ##
