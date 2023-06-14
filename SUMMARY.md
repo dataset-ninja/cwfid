@@ -1,4 +1,4 @@
-**CWFID** (A Crop/Weed Field Image Dataset) is a dataset for semantic segmentation, object detection, and instance segmentation tasks. It is used in the agriculture industry.
+**CWFID: A Crop/Weed Field Image Dataset** is a dataset for semantic segmentation, object detection, and instance segmentation tasks. It is used in the agriculture industry.
 
 The dataset consists of 60 images with 492 labeled objects belonging to 2 different classes including *crop* and *weed*.
 
