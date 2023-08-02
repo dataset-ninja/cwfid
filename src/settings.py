@@ -54,7 +54,7 @@ DOWNLOAD_ORIGINAL_URL: Optional[
 ] = "https://github.com/cwfid/dataset/archive/refs/tags/v1.0.zip"
 # Optional link for downloading original dataset (e.g. "https://some.com/dataset/download")
 
-CLASS2COLOR: Optional[Dict[str, List[str]]] = None
+CLASS2COLOR: Optional[Dict[str, List[str]]] = {"crop": [0, 255, 255], "weed": [255, 20, 147]}
 # If specific colors for classes are needed, fill this dict (e.g. {"class1": [255, 0, 0], "class2": [0, 255, 0]})
 
 PAPER: Optional[str] = r"http://rd.springer.com/chapter/10.1007%2F978-3-319-16220-1_8"
