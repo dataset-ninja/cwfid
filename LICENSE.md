@@ -2,5 +2,4 @@ All data is subject to copyright and may only be used for non-commercial researc
 
 Contact Sebastian Haug [sebastian.haug@de.bosch.com](sebastian.haug@de.bosch.com) for any questions.
 
-
-[🔗 Source](https://github.com/cwfid/dataset#use)
+[Source](https://github.com/cwfid/dataset#use)

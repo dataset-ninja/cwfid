@@ -1,6 +1,6 @@
 If you make use of the CWFID data, please cite the following reference:
 
-``` bibtex
+```bibtex
 @inproceedings{haug15,
   author={Haug, Sebastian and Ostermann, J{\"o}rn},
   title={A Crop/Weed Field Image Dataset for the Evaluation of Computer Vision Based Precision Agriculture Tasks},
@@ -12,4 +12,4 @@ If you make use of the CWFID data, please cite the following reference:
 }
 ```
 
-[🔗 Source](https://github.com/cwfid/dataset#paper)
+[Source](https://github.com/cwfid/dataset#paper)
