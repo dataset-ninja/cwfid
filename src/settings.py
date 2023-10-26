@@ -25,7 +25,7 @@ APPLICATIONS: List[Union[Industry, Domain, Research]] = [
     Industry.Agricultural(),
     Research.Biological(),
 ]
-CATEGORY: Category = Category.Agriculture()
+CATEGORY: Category = Category.Agriculture(extra=Category.Robotics())
 
 CV_TASKS: List[CVTask] = [
     CVTask.InstanceSegmentation(),
@@ -61,6 +61,7 @@ CLASS2COLOR: Optional[Dict[str, List[str]]] = {"crop": [0, 255, 255], "weed": [2
 PAPER: Optional[str] = r"http://rd.springer.com/chapter/10.1007%2F978-3-319-16220-1_8"
 CITATION_URL: Optional[str] = "https://github.com/cwfid/dataset#paper"
 AUTHORS: Optional[List[str]] = ["Sebastian Haug", "Jörn Ostermann"]
+AUTHORS_CONTACTS: Optional[List[str]] = ["sebastian.haug@de.bosch.com"]
 
 ORGANIZATION_NAME: Optional[Union[str, List[str]]] = [
     "Bosch Research",
@@ -113,6 +114,7 @@ def get_settings():
     settings["paper"] = PAPER
     settings["citation_url"] = CITATION_URL
     settings["authors"] = AUTHORS
+    settings["authors_contacts"] = AUTHORS_CONTACTS
     settings["organization_name"] = ORGANIZATION_NAME
     settings["organization_url"] = ORGANIZATION_URL
     settings["slytagsplit"] = SLYTAGSPLIT
