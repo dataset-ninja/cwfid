@@ -1,6 +1,6 @@
 Dataset **CWFID** can be downloaded in [Supervisely format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format):
 
- [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/5/g/hE/lKSQ7C6leOZLR7O7ZYfH0NYMajfZJiyLCAXlPvdlZDbJsO1WGAxCdeUdPkFiEMAzNcZWOaaqng8lPtGQqTZ2qVWHrRtDjfl7np7qBRlYE9TcZh2mnZGLv6jZa2VT.tar)
+ [Download](https://www.dropbox.com/scl/fi/qsjntf8fwifs0b2t33wnn/cwfid-DatasetNinja.tar?rlkey=koltycqo351citqxljzu7cdvf&dl=1)
 
 As an alternative, it can be downloaded with *dataset-tools* package:
 ``` bash
